@@ -81,3 +81,6 @@ Add:
 - Add unit tests for validation rules
 - Add orchestration (scheduled runs) via cron/Prefect
 - Expand to medication adherence or cohort selection logic
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
