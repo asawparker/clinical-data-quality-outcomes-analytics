@@ -93,11 +93,30 @@ Add:
 - Coding systems simplified (ICD mapping may be incomplete)
 - Results intended for demo/training purposes only
 
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## Results
 
+### Data Quality & Completeness
+- All core tables (patients, encounters, observations) contained complete primary identifiers with no missing IDs.
+- Encounter timestamps (START/STOP) were fully populated across 61,459 encounters.
+- Approximately **34.2% of encounters** had at least one linked clinical observation, reflecting realistic variation in encounter types (e.g., administrative vs clinical visits).
 
+### Observation Coverage
+Coverage of common vitals across all encounters:
+- Blood pressure: **23.2%**
+- Heart rate: **20.8%**
+- Respiratory rate: **20.8%**
+- Body temperature: **1.6%**
+- Oxygen saturation (SpO₂): **0.5%**
 
-## Next Steps
-- Add unit tests for validation rules
-- Add orchestration (scheduled runs) via cron/Prefect
+Lower coverage for temperature and SpO₂ is consistent with outpatient-focused synthetic data and demonstrates the importance of coverage-aware reporting.
+
+### Plausibility & Data Cleaning Considerations
+- **34.7% of observations** lacked units, highlighting the need for unit normalization in downstream analyses.
+- A substantial number of observations contained non-numeric categorical values (e.g., smoking status, social determinants), requiring type-aware handling rather than naive numeric casting.
+- Plausibility checks on common vitals showed realistic value ranges:
+  - Heart rate: 50–199 bpm
+  - Body temperature: 36.1–42.2 °C
+  - Oxygen saturation: 75–98%
+
+These findings informed decisions on which metrics were appropriate for quantitative analysis versus categorical reporting.
+
