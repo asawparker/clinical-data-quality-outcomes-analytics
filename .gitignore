@@ -14,3 +14,4 @@ dashboards/*
 
 # OS
 .DS_Store
+ehr.db
